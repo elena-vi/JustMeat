@@ -1,2 +1,2 @@
 # JustMeat :meat_on_bone: :meat_on_bone: :meat_on_bone: 
-Rails Yelp
+Live on: http://justmeat.herokuapp.com/
