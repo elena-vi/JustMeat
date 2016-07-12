@@ -1,38 +1,33 @@
-<!-- <h1>Please sign up</h1>
+<p id="notice"><%= notice %></p>
 
-<form action='/users' method='post'>
-  <label for='first_name'>
-    First Name: <input id='first_name' name='first_name' type='text' required>
-  </label>
-  <label for='last_name'>
-    Last Name: <input id='last_name' name='last_name' type='text' required>
-  </label>
-  <label for='email'>
-    Email: <input id='email' name='email' type='email' required>
-  </label>
-  <label for='password'>
-    Password: <input id='password' name='password' type='password'>
-  </label>
-  <label for='password_confirmation'>
-    Password Confirmation: <input id='password_confirmation' name='password_confirmation' type='password'>
-  </label>
-  <input type='submit' value='Sign up'>
-</form> -->
+<h1>Listing Users</h1>
 
-<h1>Sign Up</h1>
+<table>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Email</th>
+      <th>Password digest</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-<%= form_for User.new do |f| %>
-  <%= f.label :first_name, :'First Name'%>
-  <%= f.text_field :first_name, placeholder:'First Name' %>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.password_digest %></td>
+        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-  <%= f.label :last_name, :'Last Name'%>
-  <%= f.text_field :last_name, placeholder:'Last Name'  %>
+<br>
 
-  <%= f.label :email, :'Email'%>
-  <%= f.email_field :email, placeholder:'Email'  %>
-
-  <%= f.label :password_digest, :'Password'%>
-  <%= f.password_field :password_digest, placeholder:'Password'  %>
-
-  <%= f.submit :'Sign Up'%>
-<% end %>
+<%= link_to 'New User', new_user_path %>
