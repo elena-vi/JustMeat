@@ -34,6 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :test do
   gem 'rspec-rails'
+  gem 'nyan-cat-formatter'
   gem 'capybara'
 end
 
