@@ -13,19 +13,19 @@
 
   <div class="field">
     <%= f.label :first_name %><br>
-    <%= f.text_field :first_name, placeholder: 'First Name' %>
+    <%= f.text_field :first_name, placeholder: 'First Name', required: true %>
   </div>
   <div class="field">
     <%= f.label :last_name %><br>
-    <%= f.text_field :last_name, placeholder: 'Last Name' %>
+    <%= f.text_field :last_name, placeholder: 'Last Name', required: true %>
   </div>
   <div class="field">
     <%= f.label :email %><br>
-    <%= f.email_field :email, placeholder: 'Email Address' %>
+    <%= f.email_field :email, placeholder: 'Email Address', required: true %>
   </div>
   <div class="field">
     <%= f.label :'password' %><br>
-    <%= f.password_field :password_digest, placeholder: 'Password' %>
+    <%= f.password_field :password_digest, placeholder: 'Password', required: true %>
   </div>
   <div class="actions">
     <%= f.submit :'Sign Up' %>

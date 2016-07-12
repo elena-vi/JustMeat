@@ -1,0 +1,26 @@
+<!-- <%= form_tag('/sessions', method: 'post') do  %>
+
+  <div class="field">
+    <%= label_tag :email %><br>
+    <%= email_field_tag :email, placeholder: 'Email Address', required: true %>
+  </div>
+  <div class="field">
+    <%= label_tag :'password' %><br>
+    <%= password_field_tag :password, placeholder: 'Password', required: true %>
+  </div>
+  <div class="actions">
+    <%= submit_tag :'Sign In' %>
+  </div>
+<% end %> -->
+
+<h1>Sign In</h1>
+
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+
+<form action="/sessions" method="post">
+  <input type="email" name="email" placeholder="Email" required>
+  <input type="password" name="password" placeholder="Password" required>
+  <input type="submit" name="Sign In" >
+</form>

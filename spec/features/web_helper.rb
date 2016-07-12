@@ -1,8 +1,16 @@
+def create_user
+  User.create(first_name: 'Vanisthe',
+              last_name: 'Best',
+              email: 'user@example.com',
+              password_digest: 'secret1234'
+              )
+end
+
 def sign_in(email:, password:)
   visit '/sessions/new'
   fill_in :email, with: email
   fill_in :password, with: password
-  click_button 'Sign in'
+  click_button 'Sign In'
 end
 
 def sign_up(

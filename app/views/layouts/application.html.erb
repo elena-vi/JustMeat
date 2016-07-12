@@ -8,6 +8,15 @@
 </head>
 <body>
 
+  <% if session[:user_id] %>
+    <% @user = User.find_by(id: session[:user_id]) %>
+    <%= 'signed in: ' + @user.first_name %>
+
+    <%= form_tag('/sessions/destroy', method: 'delete') do %>
+      <%= submit_tag(:'Sign Out') %>
+    <% end %>
+  <% end %>
+
 <%= yield %>
 
 </body>
