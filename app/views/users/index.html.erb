@@ -1,0 +1,38 @@
+<!-- <h1>Please sign up</h1>
+
+<form action='/users' method='post'>
+  <label for='first_name'>
+    First Name: <input id='first_name' name='first_name' type='text' required>
+  </label>
+  <label for='last_name'>
+    Last Name: <input id='last_name' name='last_name' type='text' required>
+  </label>
+  <label for='email'>
+    Email: <input id='email' name='email' type='email' required>
+  </label>
+  <label for='password'>
+    Password: <input id='password' name='password' type='password'>
+  </label>
+  <label for='password_confirmation'>
+    Password Confirmation: <input id='password_confirmation' name='password_confirmation' type='password'>
+  </label>
+  <input type='submit' value='Sign up'>
+</form> -->
+
+<h1>Sign Up</h1>
+
+<%= form_for User.new do |f| %>
+  <%= f.label :first_name, :'First Name'%>
+  <%= f.text_field :first_name, placeholder:'First Name' %>
+
+  <%= f.label :last_name, :'Last Name'%>
+  <%= f.text_field :last_name, placeholder:'Last Name'  %>
+
+  <%= f.label :email, :'Email'%>
+  <%= f.email_field :email, placeholder:'Email'  %>
+
+  <%= f.label :password_digest, :'Password'%>
+  <%= f.password_field :password_digest, placeholder:'Password'  %>
+
+  <%= f.submit :'Sign Up'%>
+<% end %>

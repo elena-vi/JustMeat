@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
-  get 'users/new' => 'users#create'
+  get 'users/new' => 'users#index'
+  post 'users' => 'users#create'
+
+  get 'sessions' => 'sessions#index'
+
+  resources :users
+  resources :sessions
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
