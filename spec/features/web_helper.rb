@@ -6,8 +6,8 @@ def sign_in(email:, password:)
 end
 
 def sign_up(
-  first_name: 'vanisthe',
-  last_name: 'best',
+  first_name: 'Vanisthe',
+  last_name: 'Best',
   email: 'vanisthebest@example.com',
   password: '12345678',
   password_confirmation: '12345678')
