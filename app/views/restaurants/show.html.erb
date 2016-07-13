@@ -9,8 +9,23 @@
   <%= @restaurant.description %>
 </p>
 
+<p>
+  <strong>Image:</strong>
+  <%= @restaurant.image %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @restaurant.phone_number %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @restaurant.address %>
+</p>
+
 <% if current_user && current_user.id != @restaurant.user_id %>
-  <%= link_to 'New Review', new_review_path %> | 
+  <%= link_to 'New Review', new_review_path %> |
 <% end %>
 
 <% if current_user && current_user.id == @restaurant.user_id %>

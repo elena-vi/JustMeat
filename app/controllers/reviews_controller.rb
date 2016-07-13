@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/new
   def new
-    # redirect_to '/' unless current_user.id != @restaurant.user_id 
+    # redirect_to '/' unless current_user.id != @restaurant.user_id
     @review = Review.new
   end
 
@@ -72,6 +72,6 @@ class ReviewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
-      params.require(:review).permit(:description, :image, :phone_number, :address, :user_id, :restaurant_id)
+      params.require(:review).permit(:description, :rating)
     end
 end
