@@ -11,7 +11,7 @@
     <h1><a href="/">Just-Meat</a></h1>
     <% if current_user %>
       <%= 'Welcome ' + current_user.first_name %>
-
+      <%= link_to 'Update Account', edit_user_path(current_user) %>
       <%= form_tag('/sessions', method: 'delete') do %>
         <%= submit_tag(:'Sign Out') %>
       <% end %>
