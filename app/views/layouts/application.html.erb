@@ -10,7 +10,7 @@
   <nav>
     <h1><a href="/">Just-Meat</a></h1>
     <% if current_user %>
-      <%= 'signed in: ' + current_user.first_name %>
+      <%= 'Welcome ' + current_user.first_name %>
 
       <%= form_tag('/sessions', method: 'delete') do %>
         <%= submit_tag(:'Sign Out') %>
