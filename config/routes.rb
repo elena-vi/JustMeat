@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :restaurants
 
-  root :to => redirect('/reviews')
+  root :to => redirect('/restaurants')
 
   get 'sessions/new' => 'sessions#new'
   post 'sessions' => 'sessions#create'
