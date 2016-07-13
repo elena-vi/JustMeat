@@ -23,7 +23,7 @@ class RestaurantsController < ApplicationController
 
   # GET /restaurants/1/edit
   def edit
-    redirect_to '/' unless current_user
+    redirect_to '/' unless current_user.id == set_restaurant.user_id
   end
 
   # POST /restaurants
@@ -61,11 +61,14 @@ class RestaurantsController < ApplicationController
   # DELETE /restaurants/1
   # DELETE /restaurants/1.json
   def destroy
-    redirect_to '/' unless current_user
-    @restaurant.destroy
-    respond_to do |format|
-      format.html { redirect_to restaurants_url, notice: 'Restaurant was successfully destroyed.' }
-      format.json { head :no_content }
+    if current_user.id == set_restaurant.user_id
+      @restaurant.destroy
+      respond_to do |format|
+        format.html { redirect_to restaurants_url, notice: 'Restaurant was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to '/'
     end
   end
 

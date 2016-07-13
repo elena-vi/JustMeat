@@ -4,7 +4,7 @@
   <%= flash[:notice] %>
 <% end %>
 
-<%= form_tag('/sessions', method: 'post', autocomplete: 'off') do %>
+<%= form_tag('/sessions', method: 'post') do %>
   <div class="field">
     <%= label_tag :email %><br>
     <%= email_field :email, nil, placeholder: 'Email Address' %>
