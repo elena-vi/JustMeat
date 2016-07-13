@@ -5,18 +5,16 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:email])
     if @user
       session[:user_id] = @user.id
-      # redirect_to '/users/new'
-      render inline: 'Logged in!'
+      redirect_to '/'
     else
       flash[:notice] = 'Sign In Details Incorrect!'
-      render '/sessions/new'
+      redirect_to '/sessions/new'
     end
   end
 
   def destroy
-    p 'DESTROY!!!!'
     session[:user_id] = nil
-    redirect_to '/sessions/new'
+    redirect_to '/'
   end
 
 private

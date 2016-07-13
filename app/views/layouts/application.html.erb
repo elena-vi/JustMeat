@@ -7,15 +7,22 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav>
+    <% if session[:user_id] %>
+      <% @user = User.find_by(id: session[:user_id]) %>
+      <%= 'signed in: ' + @user.first_name %>
 
-  <% if session[:user_id] %>
-    <% @user = User.find_by(id: session[:user_id]) %>
-    <%= 'signed in: ' + @user.first_name %>
+      <%= form_tag('/sessions', method: 'delete') do %>
+        <%= submit_tag(:'Sign Out') %>
+      <% end %>
 
-    <%= form_tag('/sessions/destroy', method: 'delete') do %>
-      <%= submit_tag(:'Sign Out') %>
+    <% else %>
+      <a href="/sessions/new">Log In</a>
+      <a href="/users/new">Sign Up</a>
     <% end %>
-  <% end %>
+  </nav>
+
+  <h1>Just-Meat</h1>
 
 <%= yield %>
 
