@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :restaurants
-
   root :to => redirect('/restaurants')
 
   get 'sessions/new' => 'sessions#new'
@@ -9,6 +7,8 @@ Rails.application.routes.draw do
   delete 'sessions' => 'sessions#destroy'
 
   resources :users
+
+  resources :restaurants
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
