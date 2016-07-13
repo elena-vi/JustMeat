@@ -7,13 +7,14 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to '/'
     else
-      flash[:notice] = 'Sign In Details Incorrect!'
+      flash[:error] = 'Sign In Details Incorrect!'
       redirect_to '/sessions/new'
     end
   end
 
   def destroy
     session[:user_id] = nil
+    flash[:notice] = 'Goodbye!'
     redirect_to '/'
   end
 
