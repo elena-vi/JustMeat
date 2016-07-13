@@ -8,9 +8,10 @@
 </head>
 <body>
   <nav>
+    <h1><a href="/">Just-Meat</a></h1>
     <% if current_user %>
-      <%= 'signed in: ' + current_user.first_name %>
-
+      <%= 'Welcome ' + current_user.first_name %>
+      <%= link_to 'Update Account', edit_user_path(current_user) %>
       <%= form_tag('/sessions', method: 'delete') do %>
         <%= submit_tag(:'Sign Out') %>
       <% end %>
@@ -21,7 +22,13 @@
     <% end %>
   </nav>
 
-  <h1>Just-Meat</h1>
+  <% if notice %>
+    <p class="notice"><%= notice %></p>
+  <% end %>
+
+  <% if flash[:error] %>
+    <p class="error"><%= flash[:error] %></p>
+  <% end %>
 
 <%= yield %>
 
