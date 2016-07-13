@@ -8,6 +8,7 @@
 </head>
 <body>
   <nav>
+    <h1><a href="/">Just-Meat</a></h1>
     <% if current_user %>
       <%= 'signed in: ' + current_user.first_name %>
 
@@ -21,7 +22,6 @@
     <% end %>
   </nav>
 
-  <h1>Just-Meat</h1>
 
 <%= yield %>
 

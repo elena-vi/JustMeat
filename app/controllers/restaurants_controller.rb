@@ -14,11 +14,16 @@ class RestaurantsController < ApplicationController
 
   # GET /restaurants/new
   def new
-    @restaurant = Restaurant.new
+    if current_user
+      @restaurant = Restaurant.new
+    else
+      redirect_to '/'
+    end
   end
 
   # GET /restaurants/1/edit
   def edit
+    redirect_to '/' unless current_user
   end
 
   # POST /restaurants
@@ -27,7 +32,7 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.new(restaurant_params)
 
     respond_to do |format|
-      if !!@restaurant
+      if !!@restaurant && current_user
         current_user.restaurants << @restaurant
         @restaurant.save
         format.html { redirect_to @restaurant, notice: 'Restaurant was successfully created.' }
@@ -56,6 +61,7 @@ class RestaurantsController < ApplicationController
   # DELETE /restaurants/1
   # DELETE /restaurants/1.json
   def destroy
+    redirect_to '/' unless current_user
     @restaurant.destroy
     respond_to do |format|
       format.html { redirect_to restaurants_url, notice: 'Restaurant was successfully destroyed.' }
