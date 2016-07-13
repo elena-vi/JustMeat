@@ -25,5 +25,5 @@ def sign_up(
   fill_in :'user[last_name]', with: last_name
   fill_in :'user[email]', with: email
   fill_in :'user[password_digest]', with: password
-  click_button 'Sign Up'
+  click_button 'Create User'
 end
