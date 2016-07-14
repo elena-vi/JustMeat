@@ -9,12 +9,19 @@ class User < ActiveRecord::Base
 
 	before_save :encrypt_password
 	after_save :clear_password
+
 	def encrypt_password
 		if password.present?
-			self.password_digest= BCrypt::Engine.hash_secret(password, BCrypt::Engine.generate_salt)
+			self.salt = BCrypt::Engine.generate_salt
+			self.password_digest = BCrypt::Engine.hash_secret(password, salt)
 		end
 	end
 	def clear_password
 		self.password = nil
+	end
+
+	def authenticate password
+		# @user.password == BCrypt::Engine.hash_secret(password, @user.salt)
+		BCrypt::Password.new(self.password_digest) == password
 	end
 end
