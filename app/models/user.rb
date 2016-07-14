@@ -3,8 +3,18 @@ class User < ActiveRecord::Base
 	has_many :reviews
 
 	attr_accessor :password
-	EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
-	validates :email, :presence => true, :uniqueness => true, :format => EMAIL_REGEX
+	validates :email, :presence => true, :uniqueness => true
 	validates :password, :confirmation => true #password_confirmation attr
 	validates_length_of :password, :in => 6..20, :on => :create
+
+	before_save :encrypt_password
+	after_save :clear_password
+	def encrypt_password
+		if password.present?
+			self.password_digest= BCrypt::Engine.hash_secret(password, BCrypt::Engine.generate_salt)
+		end
+	end
+	def clear_password
+		self.password = nil
+	end
 end
