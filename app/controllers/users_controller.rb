@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    redirect_to '/' unless current_user.id == set_user.id
+    redirect_to '/' unless current_user && current_user.id == set_user.id
   end
 
   # GET /users/new
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    redirect_to '/' unless current_user.id == set_user.id
+    redirect_to '/' unless current_user && current_user.id == set_user.id
   end
 
   # POST /users
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to '/sessions/new', notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }

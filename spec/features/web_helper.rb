@@ -1,9 +1,10 @@
 def create_user
-  User.create(first_name: 'Vanisthe',
-              last_name: 'Best',
-              email: 'user@example.com',
-              password_digest: 'secret1234'
-              )
+  User.create(
+    first_name: 'Vanisthe',
+    last_name: 'Best',
+    email: 'vanisthebest@example.com',
+    password_digest: '12345678'
+  )
 end
 
 def sign_in(email:, password:)
@@ -25,5 +26,5 @@ def sign_up(
   fill_in :'user[last_name]', with: last_name
   fill_in :'user[email]', with: email
   fill_in :'user[password_digest]', with: password
-  click_button 'Sign Up'
+  click_button 'Create User'
 end

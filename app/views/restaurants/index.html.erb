@@ -10,11 +10,14 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id='restaurants'>
     <% @restaurants.each do |restaurant| %>
       <tr>
         <td><%= restaurant.name %></td>
         <td><%= restaurant.description %></td>
+        <td><%= restaurant.image %></td>
+        <td><%= restaurant.phone_number %></td>
+        <td><%= restaurant.address %></td>
         <td><%= link_to 'Show', restaurant %></td>
         <% if current_user && current_user.id == restaurant.user_id %>
           <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>

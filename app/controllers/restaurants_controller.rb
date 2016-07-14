@@ -23,7 +23,7 @@ class RestaurantsController < ApplicationController
 
   # GET /restaurants/1/edit
   def edit
-    redirect_to '/' unless current_user.id == set_restaurant.user_id
+    redirect_to '/' unless current_user && current_user.id == set_restaurant.user_id
   end
 
   # POST /restaurants
@@ -32,7 +32,7 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.new(restaurant_params)
 
     respond_to do |format|
-      if !!@restaurant && current_user
+      if @restaurant && current_user
         current_user.restaurants << @restaurant
         @restaurant.save
         format.html { redirect_to @restaurant, notice: 'Restaurant was successfully created.' }
@@ -80,6 +80,6 @@ class RestaurantsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def restaurant_params
-      params.require(:restaurant).permit(:name, :description)
+      params.require(:restaurant).permit(:name, :description, :image, :phone_number, :address)
     end
 end
