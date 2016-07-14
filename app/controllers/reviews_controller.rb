@@ -19,10 +19,13 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/new
   def new
+    restaurant = Restaurant.find_by_id(params[:restaurant_id])
     redirect_to '/', error: ERRORS[:not_logged_in] and return unless current_user
 
-    restaurant = Restaurant.find_by_id(params[:restaurant_id])
     redirect_to '/' and return unless restaurant
+
+    existing_review = restaurant.reviews.find_by(user_id: current_user.id)
+    redirect_to "/reviews/#{existing_review.id}", notice: 'You\'ve already posted a review!' and return if existing_review
 
     redirect_to '/', error: ERRORS[:own_restaurant] and return if current_user == restaurant.user
 
@@ -31,6 +34,7 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/1/edit
   def edit
+    # p params
   end
 
   # POST /reviews
