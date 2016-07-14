@@ -1,5 +1,6 @@
-<h1>New Review</h1>
+<h2>New Review</h2>
+<h3><%= @restaurant.name %></h3>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', reviews_path %>
+<%= link_to 'Back', "/restaurants/#{@restaurant.id}" %>
