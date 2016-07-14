@@ -1,4 +1,9 @@
 class ReviewsController < ApplicationController
+  ERRORS = {
+    not_logged_in: 'You must be logged in to add a review.',
+    own_restaurant: 'You cannot review your own restaurant.'
+  }
+
   before_action :set_review, only: [:show, :edit, :update, :destroy]
 
   # GET /reviews
@@ -14,8 +19,14 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/new
   def new
-    # redirect_to '/' unless current_user.id != @restaurant.user_id
-    @review = Review.new
+    redirect_to '/', error: ERRORS[:not_logged_in] and return unless current_user
+
+    restaurant = Restaurant.find_by_id(params[:restaurant_id])
+    redirect_to '/' and return unless restaurant
+
+    redirect_to '/', error: ERRORS[:own_restaurant] and return if current_user == restaurant.user
+
+    @review = Review.new(restaurant_id: params[:restaurant_id])
   end
 
   # GET /reviews/1/edit
@@ -30,7 +41,6 @@ class ReviewsController < ApplicationController
     respond_to do |format|
       if !!@review && current_user
         current_user.reviews << @review
-        # restaurant.reviews << @review
         @review.save
         format.html { redirect_to @review, notice: 'Review was successfully created.' }
         format.json { render :show, status: :created, location: @review }
@@ -73,6 +83,6 @@ class ReviewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
-      params.require(:review).permit(:description, :rating)
+      params.require(:review).permit(:description, :rating, :restaurant_id)
     end
 end

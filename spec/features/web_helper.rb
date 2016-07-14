@@ -1,9 +1,10 @@
 def create_user
-  User.create(first_name: 'Vanisthe',
-              last_name: 'Best',
-              email: 'user@example.com',
-              password_digest: 'secret1234'
-              )
+  User.create(
+    first_name: 'Vanisthe',
+    last_name: 'Best',
+    email: 'vanisthebest@example.com',
+    password_digest: '12345678'
+  )
 end
 
 def sign_in(email:, password:)

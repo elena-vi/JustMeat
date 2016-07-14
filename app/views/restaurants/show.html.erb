@@ -25,7 +25,7 @@
 </p>
 
 <% if current_user && current_user.id != @restaurant.user_id %>
-  <%= link_to 'New Review', new_review_path %> |
+  <%= link_to 'New Review', (new_review_path.to_s + '?restaurant_id=' + @restaurant.id.to_s) %> |
 <% end %>
 
 <% if current_user && current_user.id == @restaurant.user_id %>
