@@ -3,7 +3,8 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by(email: params[:email])
-    if @user
+
+    if @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect_to '/'
     else
@@ -26,6 +27,6 @@ private
 
     # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:email, :password_digest)
+    params.require(:user).permit(:email, :password)
   end
 end
