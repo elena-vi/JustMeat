@@ -24,6 +24,17 @@
   <%= @restaurant.address %>
 </p>
 
+<% if @restaurant.reviews.length > 0 %>
+  <h3>Reviews</h3>
+  <ul>
+    <li><% @restaurant.reviews.each do |review| %>
+      <p><%= review.description %></p>
+      <p>Rating: <%= review.rating %></p>
+    </li>
+  <% end %>
+  </ul>
+<% end %>
+
 <% if current_user && current_user.id != @restaurant.user_id %>
   <%= link_to 'New Review', (new_review_path.to_s + '?restaurant_id=' + @restaurant.id.to_s) %> |
 <% end %>
