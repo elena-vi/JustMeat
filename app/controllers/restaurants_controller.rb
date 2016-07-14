@@ -32,7 +32,7 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.new(restaurant_params)
 
     respond_to do |format|
-      if !!@restaurant && current_user
+      if @restaurant && current_user
         current_user.restaurants << @restaurant
         @restaurant.save
         format.html { redirect_to @restaurant, notice: 'Restaurant was successfully created.' }
